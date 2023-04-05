@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { NavLink, useNavigate } from "react-router-dom"
+import { NavLink, useNavigate,useLocation } from "react-router-dom"
 import { ToastContainer, toast } from 'react-toastify';
 import { sentOtpFunction } from "../services/Apis";
 import Spinner from 'react-bootstrap/Spinner';
 import "../styles/mix.css"
 
 const Login = () => {
+
 
     const [email, setEmail] = useState("");
     const [spiner,setSpiner] = useState(false);
@@ -29,10 +30,11 @@ const Login = () => {
             }
 
             const response = await sentOtpFunction(data);
+            console.log(response);
 
             if (response.status === 200) {
                 setSpiner(false)
-                navigate("/user/otp",{state:email})
+                navigate("/user/otp",{state:email});
             } else {
                 toast.error(response.response.data.error);
             }

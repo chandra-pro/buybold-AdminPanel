@@ -2,10 +2,17 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import {NavLink} from "react-router-dom"
+import { useNavigate,NavLink } from "react-router-dom";
 
 
 const Headers = () => {
+  const navigate=useNavigate();
+  const handleLogout = () => {
+		localStorage.removeItem("userdbtoken");
+    navigate('/');
+
+	};
+  const token=localStorage.getItem("userdbtoken");
   return (
     <>
       <Navbar bg="dark" variant="dark">
@@ -18,6 +25,9 @@ const Headers = () => {
           
          <h2 style={{color:"white",marginLeft:"160px"}}> Admin Dashboard</h2>
           <Nav className="">
+         {token && <button className="bg-white" style={{backgroundColor:'white',width:90,marginRight:15}} onClick={handleLogout}>
+					Logout
+				</button>}
             <NavLink to="/adminLogin" className="mt-3 mx-2 text-light text-decoration-none">Dashboard Login</NavLink>
         
           </Nav>
