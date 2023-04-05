@@ -79,6 +79,7 @@ const Sidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
+
                 <Typography variant="h3" color={colors.grey[100]}>
                   ADMINIS
                 </Typography>
@@ -107,10 +108,10 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Mr
+                  Hii
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  Admin
+                  Chandramani
                 </Typography>
               </Box>
             </Box>
