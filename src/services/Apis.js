@@ -16,3 +16,6 @@ export const userVerify = async(data)=>{
 export const adminVerify = async(data)=>{
     return await commonrequest("POST",`${BACKEND_URL}/admin/login`,data)
 }
+// export const addproduct = async(data)=>{
+//     return await commonrequest("POST",`${BACKEND_URL}/user/addproduct`,data)
+// }

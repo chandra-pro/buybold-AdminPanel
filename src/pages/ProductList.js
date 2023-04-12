@@ -7,14 +7,16 @@ const BACKEND_URI='https://localhost:4000/'
 const medias=[{
     name:"Shoe",
     desc:"Sneaker which is purely CottageOutlined.It looks good",
+    price:"499",
     proImage:"https://media.istockphoto.com/id/956501428/photo/sport-shoes-on-isolated-white-background.jpg?s=612x612&w=0&k=20&c=BdklqnfGUvf02-2CxYsw-AnrbE3e-B5zhE9JQILEEW4=",
     videos:"https://dm0qx8t0i9gc9.cloudfront.net/watermarks/video/63y00O5/20151208_220224_5dmk3_ninjabld_woman_tying_running_shoes_s001_s001_t001_108_vnscgih8e__ff2101312d42da1953ddbc3eb63d0bda__P360.mp4"
 },
 {
-    name:"Kettle",
+    name:"Sneaker",
     desc:"It will boil anything in just a while",
+    price:"1499",
     proImage:"https://media.istockphoto.com/id/956501428/photo/sport-shoes-on-isolated-white-background.jpg?s=612x612&w=0&k=20&c=BdklqnfGUvf02-2CxYsw-AnrbE3e-B5zhE9JQILEEW4=",
-    videos:"https://dm0qx8t0i9gc9.cloudfront.net/watermarks/video/63y00O5/20151208_220224_5dmk3_ninjabld_woman_tying_running_shoes_s001_s001_t001_108_vnscgih8e__ff2101312d42da1953ddbc3eb63d0bda__P360.mp4"
+    videos:"https://player.vimeo.com/external/208046219.sd.mp4?s=1abf2b26803cad88174de2f6c84e0f38dc486d21&profile_id=164"
 },
 ]
 
@@ -70,18 +72,13 @@ const ProductList = () => {
                     </div>
                     <h4>{event.name}</h4>
                     <h4>{event.desc}</h4>
+                    <h3>{event.price}</h3>
                     </>);
                   })
                 ) : (
                   <h2>No Orders</h2>
                 )}
-          {/* {listitem.map((ListItem, index) => {
-            return (
-              <div key={index}>
-                <h3>{ListItem.loc1}</h3>
-              </div>
-            );
-          })} */}
+          
         </>
       
       

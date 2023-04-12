@@ -6,43 +6,56 @@ const BACKEND_URI = 'http://localhost:4002/'
 
 const ProductForm = () => {
   const [name, setName] = useState("");
-  const [desc, setdesc] = useState("");
-  const [cover, setCover] = useState([]);
-  const [proImage, setproImage] = useState([]);
-  const [videos, setVideos] = useState([]);
+  const [description, setdescription] = useState("");
+  const [price,setPrice]=useState("");
+  const [cover, setCover] = useState();
+  const [image, setimage] = useState();
+  const [video, setVideos] = useState();
 
 
   const hadleSubmit = (e) => {
     e.preventDefault();
 
     let formdata = new FormData();
-    for (var i = 0; i < videos.length; i++) {
-      formdata.append("videos", videos[i]);
-    }
-    for (var j = 0; j < proImage.length; j++) {
-      formdata.append("proImage", proImage[j]);
-    }
-
+    // for (var i = 0; i < video.length; i++) {
+    //   formdata.append("video", video[i]);
+    // }
+    // for (var j = 0; j < image.length; j++) {
+    //   formdata.append("image", image[j]);
+    // }
+    // const formdata = new FormData();
     formdata.append("name", name);
-    formdata.append("desc", desc);
-    // // formdata.append("cover", cover)
+    formdata.append("description", description);
+    formdata.append("price", price)
+    formdata.append("image", video);
+    formdata.append("video",image);
+     axios.post(`${BACKEND_URI}user/addproduct`, formdata, { headers: {'Content-Type': 'multipart/form-data'}}).then((data)=>{
+      alert("Submitted successfully");
+      return data
+  }).catch((error)=>{
+    alert("error happened");
+      return error
+  })
+    
 
-    var payload = {}
-    formdata.forEach((key, value) => {
-      console.log(value, key);
-      payload[value] = key
-    })
-    console.log(payload)
-    axios
-      .post(`${BACKEND_URI}user/add`, payload)
-      .then((success) => {
+    
 
-        alert("Submitted successfully");
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("Error happened!");
-      });
+    // var payload = {}
+    // formdata.forEach((key, value) => {
+    //   console.log(value, key);
+    //   payload[value] = key
+    // })
+    // console.log(payload)
+    // axios
+    //   .post(`${BACKEND_URI}user/addproduct`, payload)
+    //   .then((success) => {
+
+    //     alert("Submitted successfully");
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //     alert("Error happened!");
+    //   });
   };
 
   return (
@@ -63,33 +76,34 @@ const ProductForm = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="desc">Description</label>
+            <label htmlFor="description">descriptionription</label>
             <input
               type="text"
-              name="desc"
-              id="desc"
+              name="description"
+              id="description"
               className="form-control"
-              onChange={(e) => setdesc(e.target.value)}
+              onChange={(e) => setdescription(e.target.value)}
             />
           </div>
-          {/* <div className="form-group">
-          <label htmlFor="name">Name</label>
+          <div className="form-group">
+          <label htmlFor="name">Price</label>
           <input
-            type="text"
-            name="name"
-            id="name"
+            type="number"
+            name="price"
+            id="price"
             className="form-control"
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setPrice(e.target.value)}
           />
-        </div> */}
+        </div>
+        
 
           <div className="form-group">
-            <label htmlFor="videos">Upload Videos</label>
+            <label htmlFor="video">Upload Videos</label>
             <input
               type="file"
-              name="videos"
-              id="videos"
-              multiple
+              name="video"
+              id="video"
+              // multiple
               className="form-control"
               accept=".mp4, .mkv"
               onChange={(e) => {
@@ -98,16 +112,16 @@ const ProductForm = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="Images">Product Images</label>
+            <label htmlFor="image">Product Images</label>
             <input
               type="file"
-              name="images"
-              id="images"
+              name="image"
+              id="image"
               multiple
               className="form-control"
               accept=".jpg, .png,.jpeg,.webp"
               onChange={(e) => {
-                setproImage(e.target.files);
+                setimage(e.target.files);
               }}
             />
           </div>
