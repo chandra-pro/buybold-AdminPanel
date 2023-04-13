@@ -17,6 +17,7 @@ import Calendar from "./scenes/calender";
 import AdminSubDashboard from './pages/AdminSubDashboard';
 import ProductForm from './pages/ProductForm';
 import ProductList from './pages/ProductList';
+import AddFeeditem from './pages/AddFeeditems';
 
 
 
@@ -36,7 +37,8 @@ function App() {
         <Route path="/form" element={<Form />} />
         <Route path="/bar" element={<Bar />} />
         <Route path="/faq" element={<FAQ />} />
-        <Route path="/calendar" element={<Calendar />} />     
+        <Route path="/calendar" element={<Calendar />} />  
+        <Route path="/feeditems" element={<AddFeeditem />} />    
         <Route path="/product-form" element={<ProductForm />} />
         <Route path="/productlist" element={<ProductList />} />     
         <Route path='*' element={<Error />} />

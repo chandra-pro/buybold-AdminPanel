@@ -35,6 +35,7 @@ const Login = () => {
             if (response.status === 200) {
                 setSpiner(false)
                 localStorage.setItem("username",response.data.name);
+                localStorage.setItem("sellerid",response.data.id);
                 navigate("/user/otp",{state:email});
             } else {
                 toast.error(response.response.data.error);

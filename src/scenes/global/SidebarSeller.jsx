@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import VideoOutlinedIcon from "@mui/icons-material/VideoCameraFrontSharp";
 import PeopleOutlinedIcon from "@mui/icons-material/ProductionQuantityLimitsSharp";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
@@ -170,17 +171,25 @@ const SidebarSeller = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
-              title="Calendar"
-              to="/calendar"
-              icon={<CalendarTodayOutlinedIcon />}
+             <Item
+              title="Add Reels"
+              to="/feeditems"
+              icon={<VideoOutlinedIcon/>}
               selected={selected}
               setSelected={setSelected}
             />
+           
             <Item
               title="Customer Review Page"
               to="/faq"
               icon={<HelpOutlineOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+             <Item
+              title="Calendar"
+              to="/calendar"
+              icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -199,6 +208,7 @@ const SidebarSeller = () => {
               selected={selected}
               setSelected={setSelected}
             />
+
             
           </Box>
         </Menu>
