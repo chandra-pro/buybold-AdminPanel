@@ -1,0 +1,41 @@
+.cardContainer{
+    width:40%;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    padding: 0.3rem;
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+
+
+ 
+    
+.cardContainer:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+ .imageSize{
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+ }
+
+.scrollContainer{
+    display: flex;
+    margin-left: 2rem;
+}
+.titlesize{
+    padding: 2px 50px;
+    justify-content: center;
+    display: flex;
+}
+.descriptioncard{
+    padding: 2px 50px;
+    justify-content: center;
+    display: flex;
+}
+.pricecontainer{
+    display: flex;
+    padding: 2px 50px;
+}

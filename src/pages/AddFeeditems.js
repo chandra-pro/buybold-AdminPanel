@@ -60,7 +60,7 @@ const AddFeeditem = () => {
     setSpiner(true);
 
     let formdata = new FormData(e.target);
-    axios.post(`${BACKEND_URI}user/addproduct`, formdata, { headers: { 'Content-Type': 'multipart/form-data' } }).then((data) => {
+    axios.post(`${BACKEND_URI}user/uploadreels`, formdata, { headers: { 'Content-Type': 'multipart/form-data' } }).then((data) => {
       setSpiner(false);
       alert("Submitted successfully");
       return data
@@ -112,13 +112,15 @@ const AddFeeditem = () => {
             // }}
             />
           </div>
-
+<h2>Select Products to add in Reels</h2>
           <div className='scrollContainer'>
             {listitem.map((item,index) => (
                 <TemplateCard
+                    
                     title={item.name}
                     description={item.description}
                     img={item.image}
+                    price={item.price}
                     // classNameToAdd={styles.cardContainer}
                     
                     // selected={selectedArray[index]==index? true:false}
@@ -129,7 +131,7 @@ const AddFeeditem = () => {
         </div>
          
 
-          <button type="submit" id="form-button" className="btn btn-primary mt-2">
+          <button type="submit" id="form-button" className="btn btn-primary mt-20">
             Submit
             {
                             spiner ? <span><Spinner animation="border" /></span>:""

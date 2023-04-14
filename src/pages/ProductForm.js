@@ -4,10 +4,18 @@ import { useLocation } from "react-router-dom";
 import SidebarSeller from "../scenes/global/SidebarSeller";
 import './AdminDashboard.css'
 import Spinner from 'react-bootstrap/Spinner';
+import { Select } from "@mui/material";
 const BACKEND_URI = 'http://localhost:4002/'
 
 const ProductForm = () => {
   const [spiner,setSpiner] = useState(false);
+  const [value, setValue] = useState('Mens');
+
+  const handleChange = (event) => {
+ 
+    setValue(event.target.value);
+ 
+  };
   const config = { headers: { 'Content-Type': 'multipart/form-data' } }
   var sellerid=localStorage.getItem("sellerid");
   const hadleSubmit = (e) => {
@@ -15,6 +23,7 @@ const ProductForm = () => {
     setSpiner(true);
 
     let formdata = new FormData(e.target);
+    formdata.append("category",value);
     axios.post(`${BACKEND_URI}user/addproduct/${sellerid}`, formdata, { headers: { 'Content-Type': 'multipart/form-data' } }).then((data) => {
       setSpiner(false);
       alert("Submitted successfully");
@@ -25,7 +34,10 @@ const ProductForm = () => {
     })
 
   };
-
+  
+ 
+ 
+     
   return (
 
     <div className="form-container">
@@ -55,6 +67,25 @@ const ProductForm = () => {
             // onChange={(e) => setdescription(e.target.value)}
             />
           </div>
+          <div className="form-group">
+          <label htmlFor="category">Category</label>
+          
+ <div className="dropdown-container">
+ <select className="dropdown-subcontainer" value={value} onChange={handleChange}>
+
+   <option value="mens">Mens</option>
+   <option value="womens">Womens</option>
+   <option value="electronics">Electronics</option>
+   <option value="home decor">Home Decor</option>
+   <option value="healthcare">Healthcare</option>
+   <option value="beauty">Beauty</option>
+
+ </select>
+ </div>
+
+
+</div>
+
           <div className="form-group">
             <label htmlFor="name">Price</label>
             <input
