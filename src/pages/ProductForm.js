@@ -15,7 +15,7 @@ const ProductForm = () => {
     setSpiner(true);
 
     let formdata = new FormData(e.target);
-    axios.post(`${BACKEND_URI}user/addproduct?seller_id=${sellerid}`, formdata, { headers: { 'Content-Type': 'multipart/form-data' } }).then((data) => {
+    axios.post(`${BACKEND_URI}user/addproduct/${sellerid}`, formdata, { headers: { 'Content-Type': 'multipart/form-data' } }).then((data) => {
       setSpiner(false);
       alert("Submitted successfully");
       return data

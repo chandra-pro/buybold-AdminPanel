@@ -1,13 +1,59 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import SidebarSeller from "../scenes/global/SidebarSeller";
 import './AdminDashboard.css'
 import Spinner from 'react-bootstrap/Spinner';
+import TemplateCard from "./TemplateCard";
 const BACKEND_URI = 'http://localhost:4002/'
 
+
+
+
+
+
 const AddFeeditem = () => {
+
+    const [listitem,setlistitem]=useState([]);
+   
+   
+    var sellerid=localStorage.getItem("sellerid");
+    
+    const AllProducts= async()=>{
+        await fetch(BACKEND_URI + `user/getsellerproducts/${sellerid}`, { method: 'POST', body: JSON.stringify({}), })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Items found");
+                console.log(data);
+                if(data){
+                setlistitem(data);
+               
+
+                }
+                else{
+                  setlistitem([{message:"dont have any products"}])
+                  
+                }
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+
+    }
+   
+    useEffect(()=>{
+        AllProducts();
+        
+    },[])
   const [spiner,setSpiner] = useState(false);
-  const config = { headers: { 'Content-Type': 'multipart/form-data' } }
+  const [selectedArray,setSelectedArray]=useState([])
+
+  const handleClick=(i)=>{
+  const tempArray =[...selectedArray]
+  if(tempArray[i]==i){tempArray[i]=undefined}
+  else {tempArray[i]=i}
+  
+  setSelectedArray(tempArray)
+  }
 
   const hadleSubmit = (e) => {
     e.preventDefault();
@@ -66,6 +112,21 @@ const AddFeeditem = () => {
             // }}
             />
           </div>
+
+          <div className='scrollContainer'>
+            {listitem.map((item,index) => (
+                <TemplateCard
+                    title={item.name}
+                    description={item.description}
+                    img={item.image}
+                    // classNameToAdd={styles.cardContainer}
+                    
+                    // selected={selectedArray[index]==index? true:false}
+                    handleClick={handleClick}
+                    index={index}
+                />
+            ))}
+        </div>
          
 
           <button type="submit" id="form-button" className="btn btn-primary mt-2">
