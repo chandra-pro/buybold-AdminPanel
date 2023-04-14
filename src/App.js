@@ -4,7 +4,7 @@ import Dashboard from './pages/Dashboard';
 import Otp from './pages/Otp';
 import Error from './pages/Error';
 import Headers from './components/Headers';
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route,Navigate } from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
@@ -21,26 +21,29 @@ import AddFeeditem from './pages/AddFeeditems';
 
 
 
+
 function App() {
- 
+ const user = localStorage.getItem("userdbtoken");
   return (
     <>
     <Headers />
       <Routes>
-        <Route path='/' element={<Login />} />
+      {user && <Route path="/" exact element={<Dashboard />} />}
+        <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path="/" element={<Navigate replace to="/login" />} />
+        {user &&<Route path='/dashboard' element={<Dashboard />} />}
         <Route path='/user/otp' element={<Otp />} />
         <Route path='/adminLogin' element={<AdminLogin />} />
         <Route path='/adminSubDashboard' element={<AdminSubDashboard/>} />
         <Route path='/adminDashboard' element={<AdminDashboard />} />
-        <Route path="/form" element={<Form />} />
-        <Route path="/bar" element={<Bar />} />
-        <Route path="/faq" element={<FAQ />} />
-        <Route path="/calendar" element={<Calendar />} />  
-        <Route path="/feeditems" element={<AddFeeditem />} />    
-        <Route path="/product-form" element={<ProductForm />} />
-        <Route path="/productlist" element={<ProductList />} />     
+        {user &&<Route path="/form" element={<Form />} />}
+        {user &&<Route path="/bar" element={<Bar />} />}
+        {user &&<Route path="/faq" element={<FAQ />} />}
+        {user &&<Route path="/calendar" element={<Calendar />} />}  
+        {user &&<Route path="/feeditems" element={<AddFeeditem />} />}   
+        {user &&<Route path="/product-form" element={<ProductForm />} />}
+        {user &&<Route path="/productlist" element={<ProductList />} />}    
         <Route path='*' element={<Error />} />
       </Routes>
      

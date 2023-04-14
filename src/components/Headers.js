@@ -9,7 +9,7 @@ const Headers = () => {
   const navigate=useNavigate();
   const handleLogout = () => {
 		localStorage.removeItem("userdbtoken");
-    navigate('/');
+    navigate('/login');
 
 	};
   const token=localStorage.getItem("userdbtoken");
