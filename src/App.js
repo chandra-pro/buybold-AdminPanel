@@ -32,7 +32,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path="/" element={<Navigate replace to="/login" />} />
-        {user &&<Route path='/dashboard' element={<Dashboard />} />}
+        <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/user/otp' element={<Otp />} />
         <Route path='/adminLogin' element={<AdminLogin />} />
         <Route path='/adminSubDashboard' element={<AdminSubDashboard/>} />
@@ -43,7 +43,7 @@ function App() {
         {user &&<Route path="/calendar" element={<Calendar />} />}  
         {user &&<Route path="/feeditems" element={<AddFeeditem />} />}   
         {user &&<Route path="/product-form" element={<ProductForm />} />}
-        {user &&<Route path="/productlist" element={<ProductList />} />}    
+        <Route path="/productlist" element={<ProductList />} />   
         <Route path='*' element={<Error />} />
       </Routes>
      

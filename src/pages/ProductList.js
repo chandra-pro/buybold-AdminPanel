@@ -1,8 +1,10 @@
 import { CottageOutlined } from "@mui/icons-material";
 import React,{useState,useEffect} from "react";
 import './AdminDashboard.css'
+import './Addproduct.css'
+import TemplateCard from "./TemplateCard";
 import SidebarSeller from "../scenes/global/SidebarSeller";
-const BACKEND_URI='https://localhost:4000/'
+const BACKEND_URI='http://localhost:4002/'
 
 
 const ProductList = () => {
@@ -37,16 +39,18 @@ const ProductList = () => {
       AllProducts();
       
   },[])
-         
     
   return (
+    <>
     <div className="Product-container">
     <SidebarSeller />
+    
     <div className='scrollContainer'>
-              <>
-          {listitem.length >= 1 ? (
-                  listitem.map((event, i) => {
-                    return( <div  className='cardContainer'>
+      
+              
+          
+                  {listitem.map((event, i) => 
+                    ( <div  className='cardContainer'>
                     <img className='imageSize' src={event.image}></img>
                    <div className="pricecontainer">
                     <h4>Price:</h4>
@@ -60,18 +64,18 @@ const ProductList = () => {
                         <h4>Desc:</h4>
                         <h4>{event.description}</h4>
                     </div>
-                </div>);
-                  })
-                ) : (
-                  <h2>No Orders</h2>
-                )}
+                </div>)
+                  )}
           
-        </>
+          
+        
       
       
       
     </div>
+  
     </div>
+    </>
     
   );
 };
