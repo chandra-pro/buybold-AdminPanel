@@ -4,6 +4,7 @@ import SidebarSeller from "../scenes/global/SidebarSeller";
 import './AdminDashboard.css'
 import Spinner from 'react-bootstrap/Spinner';
 import TemplateCard from "./TemplateCard";
+import './AdminDashboard.css'
 const BACKEND_URI = 'http://localhost:4002/'
 
 
@@ -17,9 +18,16 @@ const AddFeeditem = () => {
    
    
     var sellerid=localStorage.getItem("sellerid");
+    const [value, setValue] = useState('Mens');
+
+  const handleChange = (event) => {
+ 
+    setValue(event.target.value);
+ 
+  };
     
     const AllProducts= async()=>{
-        await fetch(BACKEND_URI + `user/getsellerproducts/${sellerid}`, { method: 'POST', body: JSON.stringify({}), })
+        await fetch(BACKEND_URI + `user/getsellerproductsforReels/${sellerid}/${value}`, { method: 'POST', body: JSON.stringify({}), })
         .then((response) => response.json())
         .then((data) => {
           console.log("Items found");
@@ -60,6 +68,7 @@ const AddFeeditem = () => {
     setSpiner(true);
 
     let formdata = new FormData(e.target);
+    formdata.append("category",value);
     axios.post(`${BACKEND_URI}user/uploadreels`, formdata, { headers: { 'Content-Type': 'multipart/form-data' } }).then((data) => {
       setSpiner(false);
       alert("Submitted successfully");
@@ -96,6 +105,24 @@ const AddFeeditem = () => {
               className="form-control"
             />
           </div>
+          <div className="form-group">
+          <label htmlFor="category">Category</label>
+          
+ <div className="dropdown-container">
+ <select className="dropdown-subcontainer" value={value} onChange={handleChange}>
+
+   <option value="mens">Mens</option>
+   <option value="womens">Womens</option>
+   <option value="electronics">Electronics</option>
+   <option value="home decor">Home Decor</option>
+   <option value="healthcare">Healthcare</option>
+   <option value="beauty">Beauty</option>
+
+ </select>
+ </div>
+
+
+</div>
 
 
           <div className="form-group">
