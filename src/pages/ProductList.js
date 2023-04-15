@@ -1,5 +1,6 @@
-import { CottageOutlined } from "@mui/icons-material";
+
 import React,{useState,useEffect} from "react";
+import Spinner from 'react-bootstrap/Spinner';
 import './AdminDashboard.css'
 import './Addproduct.css'
 import TemplateCard from "./TemplateCard";
@@ -39,7 +40,8 @@ const ProductList = () => {
       AllProducts();
       
   },[])
-    
+  const [spiner,setSpiner] = useState(false);
+ 
   return (
     <>
     <div className="Product-container">
@@ -64,6 +66,38 @@ const ProductList = () => {
                         <h4>Desc:</h4>
                         <h4>{event.description}</h4>
                     </div>
+                    <div className="delete-button">
+                    <button id="form-button" className="btn btn-danger margin-right" onClick={async()=>{
+                      setSpiner(true);
+                       await fetch(BACKEND_URI + `user/deleteproduct/${event._id}`, { method: 'POST', body: JSON.stringify({}), })
+                       .then((response) => response.json())
+                       .then((data) => {
+                       
+                               console.log(data);
+                               if(data){
+                               setSpiner(false);
+                               alert("Deleted Succeessfully");
+                              
+                 
+                               }
+                               else{
+                                 setSpiner(false);
+                                 
+                               }
+                             })
+                             .catch((error) => {
+                               console.log(error);
+                               setSpiner(true);
+                             });
+                 
+                   }
+                    }>
+            Delete
+            {
+                            spiner ? <span><Spinner animation="border" /></span>:""
+                        }
+          </button>
+          </div>
                 </div>)
                   )}
           

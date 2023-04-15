@@ -1,5 +1,5 @@
 .cardContainer{
-    width:40%;
+    width:20%;
     justify-content: center;
     align-items: center;
     margin: 1rem;
@@ -17,7 +17,8 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
  .imageSize{
-    width: 80%;
+    width: 200px;
+    height: 200px;
     justify-content: center;
     align-items: center;
  }
@@ -25,11 +26,17 @@
 .scrollContainer{
     display: flex;
     margin-left: 2rem;
+    flex-wrap: wrap;
 }
 .titlesize{
     padding: 2px 50px;
     justify-content: center;
     display: flex;
+}
+.delete-button{
+    justify-content: center;
+    margin-left: -360px;
+    
 }
 .descriptioncard{
     padding: 2px 50px;

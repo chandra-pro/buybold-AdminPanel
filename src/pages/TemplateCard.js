@@ -1,4 +1,5 @@
 import React, { useState,useEffect } from "react";
+
 import './Addproduct.css';
 
 const TemplateCard = ({
@@ -18,6 +19,7 @@ const TemplateCard = ({
     // if (selected) {
     //     className += `${styles.card} ${classNameToAdd} ${classNameOnSelected}`;
     // }
+   
 
     return (
         <div  className='cardContainer' onClick={()=>handleClick(index)}>
@@ -34,6 +36,7 @@ const TemplateCard = ({
                 <h4>Desc:</h4>
                 <h4>{description}</h4>
             </div>
+            
         </div>
     );
 };
