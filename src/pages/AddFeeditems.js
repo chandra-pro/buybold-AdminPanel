@@ -146,7 +146,7 @@ const AddFeeditem = () => {
                     
                     title={item.name}
                     description={item.description}
-                    img={item.image}
+                    img={item.imageUrl}
                     price={item.price}
                     // classNameToAdd={styles.cardContainer}
                     
