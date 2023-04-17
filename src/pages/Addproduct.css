@@ -1,5 +1,5 @@
 .cardContainer{
-    width:20%;
+    width: fit-content;
     justify-content: center;
     align-items: center;
     margin: 1rem;
@@ -15,6 +15,7 @@
     
 .cardContainer:hover{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+   
 }
  .imageSize{
     width: 200px;
@@ -27,6 +28,7 @@
     display: flex;
     margin-left: 2rem;
     flex-wrap: wrap;
+    
 }
 .titlesize{
     padding: 2px 50px;
