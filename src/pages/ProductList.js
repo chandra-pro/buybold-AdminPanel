@@ -53,7 +53,7 @@ const ProductList = () => {
           
                   {listitem.map((event, i) => 
                     ( <div  className='cardContainer'>
-                    <img className='imageSize' src={event.image}></img>
+                    <img className='imageSize' src={event.imageUrl}></img>
                    <div className="pricecontainer">
                     <h4>Price:</h4>
                     <h4>{event.price}</h4>
@@ -69,7 +69,7 @@ const ProductList = () => {
                     <div className="delete-button">
                     <button id="form-button" className="btn btn-danger margin-right" onClick={async()=>{
                       setSpiner(true);
-                       await fetch(BACKEND_URI + `user/deleteproduct/${event._id}`, { method: 'POST', body: JSON.stringify({}), })
+                       await fetch(BACKEND_URI + `user/deleteproduct/${event._id}`, { method: 'DELETE', body: JSON.stringify({}), })
                        .then((response) => response.json())
                        .then((data) => {
                        
@@ -77,7 +77,7 @@ const ProductList = () => {
                                if(data){
                                setSpiner(false);
                                alert("Deleted Succeessfully");
-                              
+                               AllProducts();
                  
                                }
                                else{
