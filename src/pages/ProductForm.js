@@ -35,7 +35,31 @@ const ProductForm = () => {
 
   };
   
- 
+  const hehe = (e) => {
+    var key = e.code || 0;
+    if (key === "Enter") {
+        e.preventDefault();
+        const tag = e.target.value;
+        const el = document.createElement('div');
+        el.textContent = tag;
+        const icon = document.createElement('i');
+        icon.classList = "close fas fa-times";
+        icon.addEventListener('click', (e) => {
+            const tag = "category_" + e.target.parentElement.textContent;
+            document.getElementById(tag).remove();
+            e.target.parentElement.remove();
+        })
+        el.appendChild(icon);
+        el.classList = "vmchip";
+        document.getElementById('TagList').appendChild(el);
+        e.target.value = "";
+        const option = document.createElement('option');
+        option.value = tag;
+        option.id = "category_" + tag;
+        option.setAttribute('selected', true);
+        document.getElementById('myTagList').appendChild(option);
+    }
+}
  
      
   return (
@@ -86,6 +110,7 @@ const ProductForm = () => {
 
 </div>
 
+
           <div className="form-group">
             <label htmlFor="name">Price</label>
             <input
@@ -96,6 +121,14 @@ const ProductForm = () => {
             // onChange={(e) => setPrice(e.target.value)}
             />
           </div>
+          
+          <div className="form-group">
+                        <div className='col-md' id="TagList" style={{ border: "solid lightgray 1px", width: "calc(100% - 30px)", margin: "auto", display: "flex", flexWrap: "wrap" }}>
+                        </div>
+                        <input className="form-control" list="myTagList" id="TagAdd" onKeyDown={hehe} placeholder="Add Tag...." />
+                        <select id="myTagList" name="taglist" style={{ visibility: "hidden", display: "none" }} multiple>
+                        </select>
+                    </div>
 
 
           <div className="form-group">
