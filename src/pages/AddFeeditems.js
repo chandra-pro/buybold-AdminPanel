@@ -1,11 +1,10 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SidebarSeller from "../scenes/global/SidebarSeller";
 import './AdminDashboard.css'
 import Spinner from 'react-bootstrap/Spinner';
 import TemplateCard from "./TemplateCard";
 import './AdminDashboard.css'
-
 const BACKEND_URI = 'http://localhost:4002/'
 
 
@@ -15,55 +14,48 @@ const BACKEND_URI = 'http://localhost:4002/'
 
 const AddFeeditem = () => {
 
-    const [listitem,setlistitem]=useState([]);
-   
-   
-    var sellerid=localStorage.getItem("sellerid");
-    const [value, setValue] = useState('Mens');
+  const [listitem, setlistitem] = useState([]);
+
+
+  var sellerid = localStorage.getItem("sellerid");
+  const [value, setValue] = useState('Mens');
 
   const handleChange = (event) => {
- 
     setValue(event.target.value);
- 
   };
-    
-    const AllProducts= async()=>{
-        await fetch(BACKEND_URI + `user/getsellerproductsforReels/${sellerid}`, { method: 'POST', body: JSON.stringify({}), })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Items found");
-                console.log(data);
-                if(data){
-                setlistitem(data);
-               
 
-                }
-                else{
-                  setlistitem([{message:"dont have any products"}])
-                  
-                }
-              })
-              .catch((error) => {
-                console.log(error);
-              });
+  const AllProducts = async () => {
+    await fetch(BACKEND_URI + `user/getsellerproductsforReels/${sellerid}/${value}`, { method: 'POST' })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Items found");
+        console.log(data);
+        if (data) {
+          console.log("paplu", data)
+          setlistitem(data);
+        }
+        else {
+          setlistitem([])
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-    }
-   
-    useEffect(()=>{
-        AllProducts();
-        
-    },[])
-  const [spiner,setSpiner] = useState(false);
-  const [selectedArray,setSelectedArray]=useState([])
+  }
 
-  const handleClick=(i)=>{
-    console.log("heyyy")
-  const tempArray =[...selectedArray]
-  if(tempArray[i]==i){tempArray[i]=undefined}
-  else {tempArray[i]=i}
-  console.log(tempArray[1]);
-  
-  setSelectedArray(tempArray)
+  useEffect(() => {
+    AllProducts();
+
+  }, [value])
+  const [spiner, setSpiner] = useState(false);
+  const [selectedArray, setSelectedArray] = useState([])
+
+  const handleClick = (i) => {
+    const tempArray = [...selectedArray]
+    if (tempArray[i] == i) { tempArray[i] = undefined }
+    else { tempArray[i] = i }
+    setSelectedArray(tempArray)
   }
 
   const hadleSubmit = (e) => {
@@ -71,10 +63,10 @@ const AddFeeditem = () => {
     setSpiner(true);
 
     let formdata = new FormData(e.target);
-    formdata.append("category",value);
-    axios.post(`${BACKEND_URI}user/uploadreels`, formdata, { headers: { 'Content-Type': 'multipart/form-data' } }).then((data) => {
+    axios.post(`${BACKEND_URI}user/uploadreels/${sellerid}`, formdata, { headers: { 'Content-Type': 'multipart/form-data' } }).then((data) => {
       setSpiner(false);
       alert("Submitted successfully");
+      formdata = new FormData();
       return data
     }).catch((error) => {
       alert("error happened");
@@ -90,7 +82,7 @@ const AddFeeditem = () => {
       <div className="form-subcontainer">
         <h2>Add Reel Video</h2>
         <form onSubmit={hadleSubmit}>
-        <div className="form-group">
+          <div className="form-group">
             <label htmlFor="name">Title</label>
             <input
               type="text"
@@ -109,23 +101,22 @@ const AddFeeditem = () => {
             />
           </div>
           <div className="form-group">
-          <label htmlFor="category">Category</label>
-          
- <div className="dropdown-container">
- <select className="dropdown-subcontainer" value={value} onChange={handleChange}>
+            <label htmlFor="category">Category</label>
 
-   <option value="mens">Mens</option>
-   <option value="womens">Womens</option>
-   <option value="electronics">Electronics</option>
-   <option value="home decor">Home Decor</option>
-   <option value="healthcare">Healthcare</option>
-   <option value="beauty">Beauty</option>
+            <div className="dropdown-container">
+              <select className="dropdown-subcontainer" name="category" value={value} onChange={handleChange}>
+                <option value="Mens">Mens</option>
+                <option value="womens">Womens</option>
+                <option value="electronics">Electronics</option>
+                <option value="home decor">Home Decor</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="beauty">Beauty</option>
 
- </select>
- </div>
+              </select>
+            </div>
 
 
-</div>
+          </div>
 
 
           <div className="form-group">
@@ -142,30 +133,31 @@ const AddFeeditem = () => {
             // }}
             />
           </div>
-<h2>Select Products to add in Reels</h2>
+          <h2>Select Products to add in Reels</h2>
           <div className='scrollContainer'>
-            {listitem.map((item,index) => (
-                <TemplateCard
-                    
-                    title={item.name}
-                    description={item.description}
-                    img={item.imageUrl}
-                    price={item.price}
-                   
-                    
-                    selected={selectedArray[index]==index? true:false}
-                    handleClick={handleClick}
-                    index={index}
-                />
-            ))}
-        </div>
-         
+            {listitem.map((item, index) => {
+              console.log(item)
+              return <TemplateCard
+
+                title={item.name}
+                description={item.description}
+                img={item.imageUrl}
+                price={item.price}
+                // classNameToAdd={styles.cardContainer}
+
+                // selected={selectedArray[index]==index? true:false}
+                handleClick={handleClick}
+                index={index}
+              />
+            })}
+          </div>
+
 
           <button type="submit" id="form-button" className="btn btn-primary mt-20">
             Submit
             {
-                            spiner ? <span><Spinner animation="border" /></span>:""
-                        }
+              spiner ? <span><Spinner animation="border" /></span> : ""
+            }
           </button>
         </form>
       </div>
