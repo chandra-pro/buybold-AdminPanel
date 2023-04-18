@@ -5,6 +5,7 @@ import './AdminDashboard.css'
 import Spinner from 'react-bootstrap/Spinner';
 import TemplateCard from "./TemplateCard";
 import './AdminDashboard.css'
+
 const BACKEND_URI = 'http://localhost:4002/'
 
 
@@ -27,7 +28,7 @@ const AddFeeditem = () => {
   };
     
     const AllProducts= async()=>{
-        await fetch(BACKEND_URI + `user/getsellerproductsforReels/${sellerid}/${value}`, { method: 'POST', body: JSON.stringify({}), })
+        await fetch(BACKEND_URI + `user/getsellerproductsforReels/${sellerid}`, { method: 'POST', body: JSON.stringify({}), })
         .then((response) => response.json())
         .then((data) => {
           console.log("Items found");
@@ -56,9 +57,11 @@ const AddFeeditem = () => {
   const [selectedArray,setSelectedArray]=useState([])
 
   const handleClick=(i)=>{
+    console.log("heyyy")
   const tempArray =[...selectedArray]
   if(tempArray[i]==i){tempArray[i]=undefined}
   else {tempArray[i]=i}
+  console.log(tempArray[1]);
   
   setSelectedArray(tempArray)
   }
@@ -148,9 +151,9 @@ const AddFeeditem = () => {
                     description={item.description}
                     img={item.imageUrl}
                     price={item.price}
-                    // classNameToAdd={styles.cardContainer}
+                   
                     
-                    // selected={selectedArray[index]==index? true:false}
+                    selected={selectedArray[index]==index? true:false}
                     handleClick={handleClick}
                     index={index}
                 />

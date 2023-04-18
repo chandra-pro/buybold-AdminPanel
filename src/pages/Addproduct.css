@@ -3,10 +3,16 @@
     justify-content: center;
     align-items: center;
     margin: 1rem;
-    height: 460px;
+    height: 440px;
     padding: 0.3rem;
-    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 3px 6px 0 rgba(41, 37, 37, 0.2);
   transition: 0.4s;
+  
+}
+.cardContainerClicked{
+    border: brown;
+    border-width: 5px;
+    border-style: solid;
 }
     
 .cardContainer:hover{
@@ -14,6 +20,7 @@
    
 }
  .imageSize{
+    margin-top: 0.5rem;
     width: 200px;
     height: 200px;
     justify-content: center;

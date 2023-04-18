@@ -9,20 +9,20 @@ const TemplateCard = ({
     price,
     // classNameToAdd,
     // classNameOnSelected,
-    // selected,
+    selected,
     handleClick,
     index
 }) => {
     
-    // let className = `${styles.card} ${classNameToAdd}`;
+    let className = `cardContainer`;
 
-    // if (selected) {
-    //     className += `${styles.card} ${classNameToAdd} ${classNameOnSelected}`;
-    // }
+    if (selected) {
+        className += `cardContainer cardContainerClicked`;
+    }
    
 
     return (
-        <div  className='cardContainer' onClick={()=>handleClick(index)}>
+        <div  className={className} onClick={()=>handleClick(index)}>
             <img className='imageSize' src={img}></img>
            <div className="pricecontainer">
             <h4>Price:</h4>
