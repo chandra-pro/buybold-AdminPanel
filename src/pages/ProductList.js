@@ -69,23 +69,19 @@ const ProductList = () => {
                     <div className="delete-button">
                     <button id="form-button" className="btn btn-danger margin-right" onClick={async()=>{
                       setSpiner(true);
-<<<<<<< HEAD
-                       await fetch(BACKEND_URI + `user/deleteproduct/${event._id}`, { method: 'DELETE', body: JSON.stringify({}), })
-=======
+
+
                        await fetch(BACKEND_URI + `user/deleteproduct/${event._id}`, { method: 'DELETE'})
->>>>>>> 182df6b73aef03d2a3667f16e139801bbe492197
+
                        .then((response) => response.json())
                        .then((data) => {
                        
                                console.log(data);
                                if(data){
                                setSpiner(false);
-                               alert("Deleted Succeessfully");
+                               alert("deleted Succeessfully");
                                AllProducts();
-<<<<<<< HEAD
-=======
-                              
->>>>>>> 182df6b73aef03d2a3667f16e139801bbe492197
+
                  
                                }
                                else{
