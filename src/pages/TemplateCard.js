@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import './Addproduct.css';
 
@@ -13,30 +13,41 @@ const TemplateCard = ({
     handleClick,
     index
 }) => {
-    
-    let className = `cardContainer`;
+    const [expanded, setExpanded] = useState(false);
 
-    if (selected) {
-        className += `cardContainer cardContainerClicked`;
-    }
-   
+    // let className = `${styles.card} ${classNameToAdd}`;
 
-    return (
-        <div  className={className} onClick={()=>handleClick(index)}>
+    // if (selected) {
+    //     className += `${styles.card} ${classNameToAdd} ${classNameOnSelected}`;
+    // }
+
+
+    return (expanded ?
+        <div className='cardContainer' >
             <img className='imageSize' src={img}></img>
-           <div className="pricecontainer">
-            <h4>Price:</h4>
-            <h4>{price}</h4>
-           </div>
-           <div className='titlesize'>
-            <h4>Name:</h4>
-            <h4>{title}</h4>
+            <div className='titlesize'>
+                <h6>Name:</h6>
+                <h6 style={{ fontWeight: 900 }}>{title}</h6>
             </div>
-            <div className='descriptioncard'>
-                <h4>Desc:</h4>
-                <h4>{description}</h4>
+            <div className="pricecontainer">
+                <h6>Price:</h6>
+                <h6>{price}</h6>
             </div>
-            
+            <div className='descriptioncard' style={{ height: "75px", overflow: "hidden", paddingTop: "20px" }}>
+                <h6>Desc : {description}</h6>
+            </div>
+            <button style={{ padding: "2px", width: "100px", marginLeft: "100px" }} onClick={() => setExpanded(false)}>Collapse</button>
+        </div> :
+        <div style={{ width: "300px", height: "100px", border: "solid black 0.5px", boxShadow: "0 0 10px" }} >
+            <div className='titlesize'>
+                <h6>Name:</h6>
+                <h6 style={{ fontWeight: 900 }}>{title}</h6>
+            </div>
+            <div style={{ display: "flex", justifyContent: "space-around" }}>
+                <button style={{ padding: "2px", width: "100px", }} onClick={() => setExpanded(true)}>Expand</button>
+                <button style={{ padding: "2px", width: "100px", }} onClick={(e) => { e.preventDefault(); handleClick(index) }}>Select</button>
+            </div>
+
         </div>
     );
 };

@@ -114,8 +114,6 @@ const AddFeeditem = () => {
 
               </select>
             </div>
-
-
           </div>
 
 
@@ -133,7 +131,7 @@ const AddFeeditem = () => {
             // }}
             />
           </div>
-          <h2>Select Products to add in Reels</h2>
+          {/* <h2>Select Products to add in Reels</h2>
           <div className='scrollContainer'>
             {listitem.map((item, index) => {
               console.log(item)
@@ -150,7 +148,7 @@ const AddFeeditem = () => {
                 index={index}
               />
             })}
-          </div>
+          </div> */}
 
 
           <button type="submit" id="form-button" className="btn btn-primary mt-20">

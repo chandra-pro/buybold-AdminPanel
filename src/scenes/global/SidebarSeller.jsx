@@ -35,13 +35,13 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 };
 
 const SidebarSeller = () => {
-  const location=useLocation();
+  const location = useLocation();
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
-  
+
 
   return (
     <Box
@@ -63,7 +63,7 @@ const SidebarSeller = () => {
         },
       }}
     >
-      
+
       <ProSidebar collapsed={isCollapsed}>
         <Menu iconShape="square">
           {/* LOGO AND MENU ICON */}
@@ -110,10 +110,10 @@ const SidebarSeller = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-               Hii!
+                  Hii!
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                {localStorage.getItem("username")}
+                  {localStorage.getItem("username")}
                 </Typography>
               </Box>
             </Box>
@@ -150,8 +150,8 @@ const SidebarSeller = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Invoices Balances"
-              to="/invoices"
+              title="Reels List"
+              to="/reellist"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -171,14 +171,14 @@ const SidebarSeller = () => {
               selected={selected}
               setSelected={setSelected}
             />
-             <Item
+            <Item
               title="Add Reels"
               to="/feeditems"
-              icon={<VideoOutlinedIcon/>}
+              icon={<VideoOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-           
+
             <Item
               title="Customer Review Page"
               to="/faq"
@@ -186,7 +186,7 @@ const SidebarSeller = () => {
               selected={selected}
               setSelected={setSelected}
             />
-             <Item
+            <Item
               title="Calendar"
               to="/calendar"
               icon={<CalendarTodayOutlinedIcon />}
@@ -209,7 +209,7 @@ const SidebarSeller = () => {
               setSelected={setSelected}
             />
 
-            
+
           </Box>
         </Menu>
       </ProSidebar>
