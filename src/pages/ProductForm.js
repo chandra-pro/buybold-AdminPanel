@@ -1,11 +1,11 @@
 import React, { useState} from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
 import SidebarSeller from "../scenes/global/SidebarSeller";
 import './AdminDashboard.css'
 import Spinner from 'react-bootstrap/Spinner';
-import { Select } from "@mui/material";
-const BACKEND_URI = 'http://localhost:4002/'
+
+import { BASE_URL } from "../env";
+
 
 const ProductForm = () => {
   const [spiner,setSpiner] = useState(false);
@@ -24,7 +24,7 @@ const ProductForm = () => {
 
     let formdata = new FormData(e.target);
     formdata.append("category",value);
-    axios.post(`${BACKEND_URI}user/addproduct/${sellerid}`, formdata, { headers: { 'Content-Type': 'multipart/form-data' } }).then((data) => {
+    axios.post(`${BASE_URL}user/addproduct/${sellerid}`, formdata, { headers: { 'Content-Type': 'multipart/form-data' } }).then((data) => {
       setSpiner(false);
       alert("Submitted successfully");
       return data

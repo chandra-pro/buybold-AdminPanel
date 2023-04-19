@@ -5,7 +5,8 @@ import './AdminDashboard.css'
 import Spinner from 'react-bootstrap/Spinner';
 import TemplateCard from "./TemplateCard";
 import './AdminDashboard.css'
-const BACKEND_URI = 'http://localhost:4002/'
+import { BASE_URL } from "../env";
+
 
 
 
@@ -25,7 +26,7 @@ const AddFeeditem = () => {
   };
 
   const AllProducts = async () => {
-    await fetch(BACKEND_URI + `user/getsellerproductsforReels/${sellerid}/${value}`, { method: 'POST' })
+    await fetch(BASE_URL + `user/getsellerproductsforReels/${sellerid}/${value}`, { method: 'POST' })
       .then((response) => response.json())
       .then((data) => {
         console.log("Items found");
@@ -63,7 +64,7 @@ const AddFeeditem = () => {
     setSpiner(true);
 
     let formdata = new FormData(e.target);
-    axios.post(`${BACKEND_URI}user/uploadreels/${sellerid}`, formdata, { headers: { 'Content-Type': 'multipart/form-data' } }).then((data) => {
+    axios.post(`${BASE_URL}user/uploadreels/${sellerid}`, formdata, { headers: { 'Content-Type': 'multipart/form-data' } }).then((data) => {
       setSpiner(false);
       alert("Submitted successfully");
       formdata = new FormData();

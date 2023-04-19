@@ -5,13 +5,14 @@ import './AdminDashboard.css'
 import './Addproduct.css'
 import TemplateCard from "./TemplateCard";
 import SidebarSeller from "../scenes/global/SidebarSeller";
-const BACKEND_URI = 'http://localhost:4002/'
+import { BASE_URL } from "../env";
+
 
 
 const ReelList = () => {
     const [refresh, setRefresh] = useState(false);
     const alterReelProduct = async (reel, product, action) => {
-        await fetch(BACKEND_URI + `user/alterReelProduct?r=${reel}&p=${product}&a=${action}`, { method: 'GET' })
+        await fetch(BASE_URL + `user/alterReelProduct?r=${reel}&p=${product}&a=${action}`, { method: 'GET' })
             .then((response) => response.json())
             .then((res) => {
                 console.log(res);
@@ -26,7 +27,7 @@ const ReelList = () => {
 
     var sellerid = localStorage.getItem("sellerid");
     const Products = async () => {
-        await fetch(BACKEND_URI + `user/getsellerproducts/${sellerid}`, { method: 'POST', body: JSON.stringify({}), })
+        await fetch(BASE_URL + `user/getsellerproducts/${sellerid}`, { method: 'POST', body: JSON.stringify({}), })
             .then((response) => response.json())
             .then((data) => {
                 if (data) {
@@ -45,7 +46,7 @@ const ReelList = () => {
         Products();
     }, [refresh])
     const AllProducts = async () => {
-        await fetch(BACKEND_URI + `user/getsellerreels/${sellerid}`, { method: 'POST' })
+        await fetch(BASE_URL + `user/getsellerreels/${sellerid}`, { method: 'POST' })
             .then((response) => response.json())
             .then((data) => {
                 if (data) {

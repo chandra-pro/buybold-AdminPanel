@@ -5,7 +5,8 @@ import './AdminDashboard.css'
 import './Addproduct.css'
 import TemplateCard from "./TemplateCard";
 import SidebarSeller from "../scenes/global/SidebarSeller";
-const BACKEND_URI = 'http://localhost:4002/'
+import { BASE_URL } from "../env";
+
 
 
 const ProductList = () => {
@@ -15,7 +16,7 @@ const ProductList = () => {
   var sellerid = localStorage.getItem("sellerid");
 
   const AllProducts = async () => {
-    await fetch(BACKEND_URI + `user/getsellerproducts/${sellerid}`, { method: 'POST', body: JSON.stringify({}), })
+    await fetch(BASE_URL + `user/getsellerproducts/${sellerid}`, { method: 'POST', body: JSON.stringify({}), })
       .then((response) => response.json())
       .then((data) => {
         console.log("Items found");
@@ -71,7 +72,7 @@ const ProductList = () => {
                 setSpiner(true);
 
 
-                await fetch(BACKEND_URI + `user/deleteproduct/${event._id}`, { method: 'DELETE' })
+                await fetch(BASE_URL + `user/deleteproduct/${event._id}`, { method: 'DELETE' })
 
                   .then((response) => response.json())
                   .then((data) => {
