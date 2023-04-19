@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import {registerfunction} from "../services/Apis";
 import {useNavigate} from "react-router-dom"
+import Spinner from 'react-bootstrap/Spinner';
 import "../styles/mix.css"
 
 const Register = () => {
 
   const [passhow,setPassShow] = useState(false);
+  const [spiner,setSpiner] = useState(false);
 
   const [inputdata,setInputdata] = useState({
     fname:"",
@@ -40,10 +42,12 @@ const Register = () => {
     }else if(password.length < 6){
       toast.error("password length minimum 6 character")
     }else{
+      setSpiner(true)
       const response = await registerfunction(inputdata);
       
       if(response.status === 200){
         setInputdata({...inputdata,fname:"",email:"",password:""});
+        setSpiner(false)
         navigate("/login")
       }else{
         toast.error(response.response.data.error);
@@ -58,8 +62,7 @@ const Register = () => {
         <div className="form_data">
           <div className="form_heading">
             <h1>Sign Up</h1>
-            <p style={{textAlign:"center"}}>We are glad that you will be using Project Cloud to manage
-              your tasks! We hope that you will get like it.</p>
+            <p style={{textAlign:"center"}}>We are glad that you will be using buyBold for your bussiness! We hope that you will get like it.</p>
           </div>
           <form>
             <div className="form_input">
@@ -79,7 +82,11 @@ const Register = () => {
               </div>
               </div>
             </div>
-            <button className='btn' onClick={handleSubmit}>Sign Up</button>
+            <button className='btn' onClick={handleSubmit}>Sign Up
+            {
+                            spiner ? <span><Spinner animation="border" /></span>:""
+                        }
+            </button>
             <p>Don't have and account </p>
           </form>
         </div>
