@@ -50,9 +50,15 @@ const ProductList = () => {
 
         <div className='scrollContainer'>
 
+        {/* {listitem.length >= 1 ? (
+                listitem.map((event, i) => {
+                  return <DeliveredCard daTa={event} key={i} />;
+                })
+              ) : (
+                <h2>No Orders</h2>
+              )} */}
 
-
-          {listitem.map((event, i) =>
+          {listitem.length >= 1 ? (listitem.map((event, i) =>
           (<div className='cardContainer'>
             <img className='imageSize' src={event.imageUrl}></img>
             <div className="pricecontainer">
@@ -105,6 +111,8 @@ const ProductList = () => {
               </button>
             </div>
           </div>)
+          )) : (
+            <h2>No Products</h2>
           )}
 
 

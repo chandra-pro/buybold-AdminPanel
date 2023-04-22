@@ -118,7 +118,7 @@ const AddFeeditem = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="name">Description</label>
+            <label htmlFor="description">Description</label>
             <input
               type="text"
               name="description"
