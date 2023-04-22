@@ -1,2 +1,2 @@
- export const BASE_URL='https://buybold-admin-backend-hu3k.onrender.com/'
+export const BASE_URL='https://buybold-admin-backend.onrender.com/'
 
