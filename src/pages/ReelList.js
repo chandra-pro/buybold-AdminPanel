@@ -61,6 +61,7 @@ const ReelList = () => {
             });
 
     }
+   
 
     useEffect(() => {
         AllProducts();
@@ -87,12 +88,12 @@ const ReelList = () => {
                                 return <div style={{ display: "flex", justifyContent: "space-around", flexDirection: "row", flexWrap: "nowrap" }}>
                                     <h4 >{el.name}
                                     </h4>
-                                    <span><input style={{ width: "25px", height: "25px" }} checked={event.products.includes(el._id)} onChange={(e) => {
+                                    <span><input style={{ width: "25px", height: "25px" }} checked={event.products.includes(el.app_prod_id)} onChange={(e) => {
                                         if (e.target.checked) {
-                                            alterReelProduct(event._id, el._id, "add")
+                                            alterReelProduct(event._id, el.app_prod_id, "add")
                                         }
                                         else {
-                                            alterReelProduct(event._id, el._id, "remove")
+                                            alterReelProduct(event._id, el.app_prod_id, "remove")
                                         }
 
                                     }} type="checkbox"></input> </span>

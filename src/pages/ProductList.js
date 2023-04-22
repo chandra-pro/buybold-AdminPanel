@@ -78,7 +78,7 @@ const ProductList = () => {
                 setSpiner(true);
 
 
-                await fetch(BASE_URL + `user/deleteproduct/${event._id}`, { method: 'DELETE' })
+                await fetch(BASE_URL + `user/deleteproduct/${event._id}/${event.app_prod_id}`, { method: 'DELETE' })
 
                   .then((response) => response.json())
                   .then((data) => {
