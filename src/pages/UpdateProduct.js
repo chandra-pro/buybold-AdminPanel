@@ -3,7 +3,7 @@ import axios from "axios";
 import SidebarSeller from "../scenes/global/SidebarSeller";
 import makeAnimated from "react-select/animated";
 import MySelect from "../components/MySelect";
-
+import { useNavigate, useParams } from "react-router-dom";
 import { components } from "react-select";
 import "./AdminDashboard.css";
 import Spinner from "react-bootstrap/Spinner";
@@ -31,10 +31,13 @@ const MultiValue = props => (
   </components.MultiValue>
 );
 
-const ProductForm = () => {
+const UpdateProduct = () => {
+  const navigate = useNavigate();
   const [spiner, setSpiner] = useState(false);
   const [value, setValue] = useState("Mens");
   const [size, setSize] = useState({ optionSelected: null });
+
+  const { spid, pid } = useParams();
 
   const sizeOptions = [
     { value: "XS", label: "XS" },
@@ -71,13 +74,18 @@ const ProductForm = () => {
     formdata.append("sizes", size.optionSelected);
 
     axios
-      .post(`${BASE_URL}user/addproduct/${sellerid}`, formdata, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
+      .post(
+        `${BASE_URL}user/updateproduct/${spid}/${pid}/${sellerid}`,
+        formdata,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      )
       .then(data => {
         setSpiner(false);
         alert("Submitted successfully");
-        return data;
+
+        navigate("/product-list");
       })
       .catch(error => {
         alert("error happened");
@@ -211,20 +219,6 @@ const ProductForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="video">Upload Videos</label>
-            <input
-              type="file"
-              name="video"
-              id="video"
-              // multiple
-              className="form-control"
-              accept=".mp4, .mkv"
-              // onChange={(e) => {
-              //   setVideos(e.target.files);
-              // }}
-            />
-          </div>
-          <div className="form-group">
             <label htmlFor="image">Product Images</label>
             <input
               type="file"
@@ -244,7 +238,7 @@ const ProductForm = () => {
             id="form-button"
             className="btn btn-primary mt-2"
           >
-            Submit
+            Update
             {spiner ? (
               <span>
                 <Spinner animation="border" />
@@ -259,4 +253,4 @@ const ProductForm = () => {
   );
 };
 
-export default ProductForm;
+export default UpdateProduct;

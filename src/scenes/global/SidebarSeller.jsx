@@ -142,9 +142,10 @@ const SidebarSeller = () => {
               selected={selected}
               setSelected={setSelected}
             />
+            
             <Item
-              title="Product List"
-              to="/productlist"
+              title="Product Lists"
+              to="/product-list"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -164,13 +165,7 @@ const SidebarSeller = () => {
             >
               Pages
             </Typography>
-            <Item
-              title="Add Product"
-              to="/product-form"
-              icon={<PeopleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            
             <Item
               title="Add Reels"
               to="/feeditems"
