@@ -10,10 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminLogin from "./pages/AdminLogin";
-import Bar from "./scenes/bar";
-import Form from "./scenes/form";
-import FAQ from "./scenes/faq";
-import Calendar from "./scenes/calender";
+
 import AdminSubDashboard from "./pages/AdminSubDashboard";
 import AddFeeditem from "./pages/AddFeeditems";
 import ReelList from "./pages/ReelList";
@@ -36,19 +33,16 @@ function App() {
         <Route path="/adminLogin" element={<AdminLogin />} />
         <Route path="/adminSubDashboard" element={<AdminSubDashboard />} />
         <Route path="/adminDashboard" element={<AdminDashboard />} />
-        {user && <Route path="/form" element={<Form />} />}
-        {user && <Route path="/bar" element={<Bar />} />}
-        {user && <Route path="/faq" element={<FAQ />} />}
-        {user && <Route path="/calendar" element={<Calendar />} />}
+
         {user && <Route path="/feeditems" element={<AddFeeditem />} />}
 
-        {user && <Route path="/product-list" element={<ProductsList />} />}
+        {user && <Route path="/productlist" element={<ProductsList />} />}
         {user && (
-          <Route path="/product-list/create" element={<CreateProduct />} />
+          <Route path="/productlist/create" element={<CreateProduct />} />
         )}
         {user && (
           <Route
-            path="/product-list/update/:spid/:pid"
+            path="/productlist/update/:spid/:pid"
             element={<UpdateProduct />}
           />
         )}

@@ -135,17 +135,11 @@ const SidebarSeller = () => {
             >
               Data
             </Typography>
-            <Item
-              title="Manage Product"
-              to="/team"
-              icon={<PeopleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            
             
             <Item
               title="Product Lists"
-              to="/product-list"
+              to="/productlist"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -174,20 +168,8 @@ const SidebarSeller = () => {
               setSelected={setSelected}
             />
 
-            <Item
-              title="Customer Review Page"
-              to="/faq"
-              icon={<HelpOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Calendar"
-              to="/calendar"
-              icon={<CalendarTodayOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            
+          
 
             <Typography
               variant="h6"
@@ -196,13 +178,7 @@ const SidebarSeller = () => {
             >
               Charts
             </Typography>
-            <Item
-              title="Bar Chart"
-              to="/bar"
-              icon={<BarChartOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+           
 
 
           </Box>
