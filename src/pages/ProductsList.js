@@ -37,8 +37,10 @@ const ProductsList = () => {
   const [spiner, setSpiner] = useState(false);
 
   return (
-    <div className="d-flex vh-100 bg-secondary justify-content-center align-items-center">
-      <div className="w-50 bg-white rounded p-3">
+    <div className="form-container">
+      <SidebarSeller />
+      <div className="productlist-container">
+        {/* <div className="w-50 bg-white rounded p-3"> */}
         <Link to="create" className="btn btn-success">
           Add +
         </Link>
@@ -47,6 +49,7 @@ const ProductsList = () => {
             <tr>
               <th>Name</th>
               <th>Image</th>
+              <th>description</th>
               <th>Price</th>
             </tr>
           </thead>
@@ -58,10 +61,11 @@ const ProductsList = () => {
                   <td>
                     <img src={data.imageUrl} width={50} height={50}></img>
                   </td>
+                  <td>{data.description}</td>
                   <td>{data.price}</td>
                   <td>
                     <Link
-                      to={`/product-list/update/${data._id}/${data.app_prod_id}`}
+                      to={`/productlist/update/${data._id}/${data.app_prod_id}`}
                       className="Hello"
                     >
                       <button

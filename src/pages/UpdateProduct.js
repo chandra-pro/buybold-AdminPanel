@@ -32,12 +32,16 @@ const MultiValue = props => (
 );
 
 const UpdateProduct = () => {
+  var sellerid = localStorage.getItem("sellerid");
   const navigate = useNavigate();
   const [spiner, setSpiner] = useState(false);
   const [value, setValue] = useState("Mens");
   const [size, setSize] = useState({ optionSelected: null });
 
   const { spid, pid } = useParams();
+  console.log(spid, "spid");
+  console.log(pid, "pid");
+  console.log(sellerid);
 
   const sizeOptions = [
     { value: "XS", label: "XS" },
@@ -63,7 +67,7 @@ const UpdateProduct = () => {
     setValue(event.target.value);
   };
   const config = { headers: { "Content-Type": "multipart/form-data" } };
-  var sellerid = localStorage.getItem("sellerid");
+
   const hadleSubmit = e => {
     e.preventDefault();
     setSpiner(true);
@@ -71,7 +75,7 @@ const UpdateProduct = () => {
     let formdata = new FormData(e.target);
     formdata.append("category", value);
     console.log(size.optionSelected);
-    formdata.append("sizes", size.optionSelected);
+    formdata.append("sizes", JSON.stringify(size.optionSelected));
 
     axios
       .post(
@@ -85,7 +89,7 @@ const UpdateProduct = () => {
         setSpiner(false);
         alert("Submitted successfully");
 
-        navigate("/product-list");
+        navigate("/productlist");
       })
       .catch(error => {
         alert("error happened");

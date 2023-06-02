@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import axios from "axios";
 import SidebarSeller from "../scenes/global/SidebarSeller";
@@ -33,7 +32,7 @@ const MultiValue = props => (
 );
 
 const CreateProduct = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [spiner, setSpiner] = useState(false);
   const [value, setValue] = useState("Mens");
   const [size, setSize] = useState({ optionSelected: null });
@@ -70,7 +69,7 @@ const CreateProduct = () => {
     let formdata = new FormData(e.target);
     formdata.append("category", value);
     console.log(size.optionSelected);
-    formdata.append("sizes", size.optionSelected);
+    formdata.append("sizes", JSON.stringify(size.optionSelected));
 
     axios
       .post(`${BASE_URL}user/addproduct/${sellerid}`, formdata, {
@@ -79,8 +78,8 @@ const CreateProduct = () => {
       .then(data => {
         setSpiner(false);
         alert("Submitted successfully");
-        
-        navigate('/product-list')
+
+        navigate("/productlist");
       })
       .catch(error => {
         alert("error happened");
@@ -263,4 +262,3 @@ const CreateProduct = () => {
 };
 
 export default CreateProduct;
-

@@ -25,6 +25,11 @@
     margin-top: 3em;
     margin-left: 24em;
 }
+.productlist-container{
+    margin-left: 5%;
+    margin-top: 2em;
+    width: 100%;
+}
 .Product-container{
     display: flex;
 }
